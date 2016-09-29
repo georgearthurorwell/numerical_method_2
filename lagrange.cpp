@@ -4,10 +4,10 @@ using namespace std;
 
 long double power_(int n)
 {
-    return (n % 2 == 0 ? 1 : -1)
+    return (n % 2 == 0 ? 1 : -1);
 }
 
-long double lagrange(double * x, double * y, int n, double x_)
+long double lagrange(long double * x, long double * y, int n, long double x_)
 {
     // x - массив значений аргументов
     // y - массив значений функции
@@ -22,10 +22,10 @@ long double lagrange(double * x, double * y, int n, double x_)
         {
             if(i != j)
             {
-                P = P * (x_ - x[ind[j]]) / (x[ind[i]] - x[ind[j]]);
+                P = P * (x_ - x[j]) / (x[i] - x[j]);
             }
         }
-        P_x = P_x + y[ind[i]] * P;
+        P_x = P_x + y[i] * P;
     }
     return P_x;
 }
