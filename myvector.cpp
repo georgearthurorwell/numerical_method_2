@@ -149,3 +149,11 @@ int maxcoordinate(myvector a)
     }
     return max_ind;
 }
+
+void swap(myvector & a, myvector & b)
+{
+	long double * c;
+	c = a.m;
+	a.m = b.m;
+	b.m = c;
+}
