@@ -24,9 +24,9 @@ long double polinom(long double * a, int N, long double x)
 int main()
 {
     // DEFINE N, f, x
-    int N = 9;
+    int N = 13;
     int M = 2 * N -1;
-    long double a = 0.0;
+    long double a = -1.0;
     long double b = 1.0;
     long double l = (b - a);
     long double h = l / (N - 1);
@@ -42,7 +42,8 @@ int main()
     for(int i = 0; i < N; ++i)
     {
         // f[i] = x[i] + 1.0;
-        f[i] = 10 * pow(x[i],8) + pow(x[i],3) + 3 * pow(x[i],2) + 7; //10*x^8+x^3+3x^2+7 
+        //f[i] = 10 * pow(x[i],8) + pow(x[i],3) + 3 * pow(x[i],2) + 7; //10*x^8+x^3+3x^2+7 
+        f[i] = abs(x[i]);
     }
 
     cout.setf(ios::showpos);
@@ -56,7 +57,8 @@ int main()
     for(int i = 0; i < M; ++i)
     {
         // f[i] = x[i] + 1.0;
-        f_m[i] = 10 * pow(x_m[i],8) + pow(x_m[i],3) + 3 * pow(x_m[i],2) + 7; //10*x^8+x^3+3x^2+7 
+        //f_m[i] = 10 * pow(x_m[i],8) + pow(x_m[i],3) + 3 * pow(x_m[i],2) + 7; //10*x^8+x^3+3x^2+7 
+        f_m[i] = abs(x_m[i]);
     }
 
     myvector * m = new myvector [N];
@@ -71,7 +73,10 @@ int main()
         }
         m[i].set(N + 1, v_);
     }
+
     //END DEFINE
+
+    //cout << "123123";
 
     long double * solutions = resolve_gauss(m);
 
@@ -93,10 +98,13 @@ int main()
     for(int i = 0; i < M; ++i)
     {
         delta[i] = abs(f_m[i] - polinom(solutions,N,x_m[i]));
+        cout << delta[i] << " ";
     }
     delta_g = myvector(M, delta);
 
-    cout << max(delta_l) << " " << max(delta_g) << endl;
+    cout << endl;
+
+    cout << "delta_l=" << max(delta_l) << " delta_g=" << max(delta_g) << endl;
 
     ofstream fout("output.txt");
     for(int i = 0; i < M; ++i)
