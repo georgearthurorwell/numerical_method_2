@@ -2,10 +2,12 @@
 
 using namespace std;
 
-long double power_(int n)
-{
-    return (n % 2 == 0 ? 1 : -1);
-}
+//long double power_(int n)
+//{
+//    return (n % 2 == 0 ? 1 : -1);
+//}
+
+long double lagrange(long double * , long double * , int , long double);
 
 long double lagrange(long double * x, long double * y, int n, long double x_)
 {

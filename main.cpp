@@ -10,6 +10,8 @@ using namespace std;
 
 //const long double eps = 0.000000000001;
 
+long double polinom(long double * , int, long double);
+
 long double polinom(long double * a, int N, long double x)
 {
     long double f = 0;
@@ -24,7 +26,7 @@ long double polinom(long double * a, int N, long double x)
 int main()
 {
     // DEFINE N, f, x
-    int N = 13;
+    int N = 9;
     int M = 2 * N -1;
     long double a = -1.0;
     long double b = 1.0;
@@ -42,8 +44,8 @@ int main()
     for(int i = 0; i < N; ++i)
     {
         // f[i] = x[i] + 1.0;
-        //f[i] = 10 * pow(x[i],8) + pow(x[i],3) + 3 * pow(x[i],2) + 7; //10*x^8+x^3+3x^2+7 
-        f[i] = abs(x[i]);
+        f[i] = 10 * pow(x[i],8) + pow(x[i],3) + 3 * pow(x[i],2) + 7; //10*x^8+x^3+3x^2+7
+        //f[i] = abs(x[i]);
     }
 
     cout.setf(ios::showpos);
@@ -57,8 +59,8 @@ int main()
     for(int i = 0; i < M; ++i)
     {
         // f[i] = x[i] + 1.0;
-        //f_m[i] = 10 * pow(x_m[i],8) + pow(x_m[i],3) + 3 * pow(x_m[i],2) + 7; //10*x^8+x^3+3x^2+7 
-        f_m[i] = abs(x_m[i]);
+        f_m[i] = 10 * pow(x_m[i],8) + pow(x_m[i],3) + 3 * pow(x_m[i],2) + 7; //10*x^8+x^3+3x^2+7
+        //f_m[i] = abs(x_m[i]);
     }
 
     myvector * m = new myvector [N];
@@ -70,8 +72,18 @@ int main()
         for (int j = N-2; j >= 0; --j)
         {
             v_[j] = v_[j+1] * x[i];
+            //cout << v_[j] << endl;
         }
         m[i].set(N + 1, v_);
+    }
+
+    for (int i = 0; i < N; ++i)
+    {
+        for (int j = 0; j < N+1; ++j)
+        {
+            cout << m[i].m[j] << " ";
+        }
+        cout << endl;
     }
 
     //END DEFINE
@@ -80,10 +92,15 @@ int main()
 
     long double * solutions = resolve_gauss(m);
 
+    cout << "SOLUTIONS!!!!!!!!!!!" << endl;
+
+
     for(int i = 0; i < N; ++i)
     {
-        cout << solutions[i] << " ";
+        cout << solutions[i] << endl;
     }
+
+    cout << "________________________";
 
     long double * delta = new long double[M];
 

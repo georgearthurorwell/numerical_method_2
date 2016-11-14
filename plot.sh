@@ -11,7 +11,7 @@ set xlabel "X"
 set ylabel "Y"
 set y2tics
 set xrange [-1:1]
-set yrange [-5:5]
+set yrange [-10:20]
 
 plot abs(x) title "F=" with lines, \
      datafile using 1:2 title "F'" with lines, \
